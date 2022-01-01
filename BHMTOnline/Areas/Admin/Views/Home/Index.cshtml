@@ -1,0 +1,136 @@
+﻿@*@model IEnumerable<BHMTOnline.Models.SanPham>*@
+
+@model PagedList.IPagedList<BHMTOnline.Models.SanPham>
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Quản lý sản phẩm </h2>
+
+<p>
+    <button class="btn-default">@Html.ActionLink("Thêm mới", "Create")</button>
+    @using (Html.BeginForm())
+    {
+    <p>
+        Họ tên: @Html.TextBox("SearchString") <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+<p/>
+    <table class="table">
+        <tr>
+            <th>
+                Hãng sản xuất
+            </th>
+            <th>
+                Hệ điều hành
+            </th>
+            <th>
+                Tên sản phẩm
+            </th>
+            <th>
+                Số lượng
+            </th>
+            <th>
+                Đơn giá nhập
+            </th>
+            <th>
+                Đơn giá bán
+            </th>
+            <th>
+                Hình ảnh
+            </th>
+            <th>
+                Màn hình
+            </th>
+            <th>
+                CPU
+            </th>
+            <th>
+                Ram
+            </th>
+            <th>
+                Đồ họa
+            </th>
+            <th>
+                Ổ cứng
+            </th>
+            <th>
+                Pin
+            </th>
+            <th>
+                Xuất xứ
+            </th>
+            <th>
+                Năm ra mắt
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HangSanXuat.TenHSX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeDieuHanh.TenHDH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGiaNhap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGiaBan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HinhAnh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManHinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ram)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoHoa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OCung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XuatXu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamRaMat)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaSP }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MaSP }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <!-- Thêm mã phân trang -->
+    <br />
+
+    Trang @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) / @Model.PageCount
+
+    @Html.PagedListPager(Model, page => Url.Action("Index",
+        new { page }))
+
+    <!-- Kết thúc -->

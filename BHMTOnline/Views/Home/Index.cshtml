@@ -1,0 +1,71 @@
+﻿@{ ViewBag.Title = "Luna SHOP"; }
+
+<style>
+    .bg-title-product {
+        background: #00ff90;
+        border-radius: 5px;
+        margin: 20px 0;
+    }
+
+        .bg-title-product h3 {
+            padding: 10px 20px;
+            font-family: 'Times New Roman', Times, sans-serif;
+            text-align: center;
+        }
+</style>
+<br />
+<div class="row">
+    <div class="col-md-8">
+        @Html.Action("SlidePartial", "Home")
+    </div>
+    <div class="col-md-4">
+        <img style="margin-top: 50px" src="~/HinhanhSP/logosub1.jpg" class="img-responsive" alt="" />
+        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    </div>
+</div>
+<div>
+    <img style="width:100%" class="img-responsive" src="~/HinhanhSP/banner1.jpg" />
+</div>
+<br />
+<div class="spnoibat">
+    <div class="row">
+
+        <h3> SẢN PHẨM NỔI BẬT</h3>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/imgnoibat1.jpg" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/imgnoibat2.jpg" class="img-responsive" alt="" />
+        </div>
+        <div class="col-md-4">
+            <img src="~/HinhanhSP/imgnoibat3.jpg" class="img-responsive" alt="" />
+        </div>
+    </div>
+</div>
+<div class="danhmuc">
+    @Html.Action("DanhMucPartial", "DanhMuc")
+</div>
+<div class="dt">
+
+    @Html.Action("DanhSachSanPhamPartial", "SanPham")
+</div>
+
+<div class="bg-title-product"><h3>Xem thêm</h3></div>
+@*<div class="dt">
+
+    @Html.Action("dellPartial", "SanPham")
+</div>
+<div class="dt">
+
+    @Html.Action("asusPartial", "SanPham")
+</div>*@
+
+<div class="row">
+    <h2> Tin tức sản phẩm</h2>
+    <div class="col-md-8">
+        Video
+    </div>
+    <div class="col-md-4">
+        Tin tức
+    </div>
+</div>

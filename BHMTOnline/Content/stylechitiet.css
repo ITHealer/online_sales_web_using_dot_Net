@@ -1,0 +1,28 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.details {
+    margin-top: 80px;
+    margin-bottom: 20px;
+    line-height: 2;
+    font-family: Arial;
+}
+
+hr {
+    border: 1px solid #000;
+}
+
+.details-col-2 {
+    margin-left: 60px;
+}
+
+input {
+    background: #f00;
+    color: #fff;
+    padding: 10px 30px;
+    border: 1px solid #fff;
+    border-radius: 5px;
+}

@@ -1,0 +1,27 @@
+﻿@model BHMTOnline.Models.HeDieuHanh
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>HeDieuHanh</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TenHDH)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TenHDH)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MaHDH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31829.152
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BHMTOnline", "BHMTOnline\BHMTOnline.csproj", "{99283482-79F7-43F9-99CE-E999EF0E4268}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99283482-79F7-43F9-99CE-E999EF0E4268}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99283482-79F7-43F9-99CE-E999EF0E4268}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99283482-79F7-43F9-99CE-E999EF0E4268}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99283482-79F7-43F9-99CE-E999EF0E4268}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {83E08505-FDB0-465C-BB27-5B2A9B9615D8}
+	EndGlobalSection
+EndGlobal

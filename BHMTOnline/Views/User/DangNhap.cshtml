@@ -1,0 +1,48 @@
+﻿@model BHMTOnline.Models.LoginModel
+@{
+    ViewBag.Title = "DangNhap";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .edit_editorfor {
+        width: 50%;
+    }
+
+    .form-horizontal {
+        margin-left: 212px;
+    }
+</style>
+<h2 style="margin-top: 82px; text-align: center;">Đăng nhập để sử dụng đầy đủ tính năng của Website</h2>
+
+@using (Html.BeginForm("DangNhap", "User", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.userEmail, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.userEmail, new { htmlAttributes = new { @class = "form-control edit_editorfor" } })
+                @Html.ValidationMessageFor(model => model.userEmail, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.passWord, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.passWord, new { htmlAttributes = new { type = "Password", @class = "form-control edit_editorfor" } })
+                @Html.ValidationMessageFor(model => model.passWord, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Đăng nhập" class="btn btn-default" />
+            </div>
+        </div>
+    </div>}
+@ViewBag.Fail
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

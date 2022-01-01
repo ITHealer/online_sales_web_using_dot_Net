@@ -1,0 +1,49 @@
+﻿@using BHMTOnline.Models
+@model SanPham
+<link rel="stylesheet" href="~/Content/stylechitiet.css" />
+
+@{ ViewBag.Title = "chitiet";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<div class="col-md-12 details">
+    <h2>@Model.TenSP</h2>
+    <hr />
+    <div class="col-md-6">
+        <img src="@Url.Content("~/HinhanhSP/" +@Model.HinhAnh)" />
+    </div>
+    <div class="col-md-5 details-col-2">
+        <h1 style="color: red">Giá bán: @Model.DonGiaBan$</h1>
+        Số lượng:
+        @Model.SoLuong cái
+        <br />
+        Màn hình:
+        @Model.ManHinh
+        <br />
+        CPU:
+        @Model.CPU
+        <br />
+        RAM:
+        @Model.Ram
+        <br />
+        Đồ họa:
+        @Model.DoHoa
+        <br />
+        Ổ cứng:
+        @Model.OCung
+        <br />
+        Pin:
+        @Model.Pin
+        <br />
+        Xuất xứ:
+        @Model.XuatXu
+        <br />
+        Năm ra mắt:
+        @Model.NamRaMat
+        <br />
+        @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSP = Model.MaSP, @strURL = Request.Url.ToString() }))
+        {
+            <input type="submit" name="btnBuy" value="Mua ngay" id="bgnGioHang" />
+        }
+    </div>
+</div>
+

@@ -1,0 +1,49 @@
+﻿@using BHMTOnline.Models;
+@model List<HangSanXuat>
+
+<br />
+<style>
+    .bg-local {
+        background: #000000;
+        color: #fff;
+        border-radius: 5px;
+        margin: 20px 0;
+        font-family: 'Times New Roman', Times, sans-serif;
+    }
+        .bg-local h3 {
+            padding: 10px 0 0 20px;
+        }
+        .bg-local .success {
+            margin: 0 0 10px 20px;
+            text-decoration: none;
+            width: 80px;
+            height: auto;
+            border: none;
+            padding: 5px;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .bg-local .success a {
+            text-decoration: none;
+            color: #000;
+        }
+            .bg-local .success:hover {
+                background: #0c80fb;
+                color: #fff !important;
+            }
+
+</style>
+<div class="bg-success bg-local">
+
+    <h3> Hãng sản xuất  </h3>
+
+    <div class="row">
+
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-1">
+                <button class="success"><a href="#"> @item.TenHSX</a></button>
+            </div>
+        }
+    </div>
+</div>
