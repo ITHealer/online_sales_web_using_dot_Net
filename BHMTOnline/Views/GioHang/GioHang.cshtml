@@ -20,8 +20,6 @@
         <th> Thành tiền</th>
     </tr>
 
-
-
     @foreach (var item in Model)
     {
 <tr class="font-italic">
@@ -38,21 +36,23 @@
     <td>   @String.Format("{0:0,0}", item.ThanhTien) VNĐ</td>
 
 
-</tr>}
+</tr>
+}
 
-
-
-    <tr>
-        <td colspan="6" style="text-align:right">
-
-            @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
-        </td>
-        <td colspan="6" style="text-align:right;color:blue">
-            @using (Html.BeginForm("DatHang", "GioHang", new { @class = "" }))
-            {
-<input type="submit" value="Đặt hàng" class="btn-danger" />}
-        </td>
-    </tr>
+<tr>
+    <td colspan="5" style="text-align:left">
+        @Html.ActionLink("Chỉnh sửa giỏ hàng", "SuaGioHang")
+    </td>
+    <td>
+        <p style="color: red;">Tổng: @ViewBag.TongTien VNĐ</p>
+    </td>
+    <td colspan="6" style="text-align:right;color:blue">
+        @using (Html.BeginForm("DatHang", "GioHang", new { @class = "" }))
+        {
+            <input type="submit" value="Đặt hàng" class="btn-danger" />
+        }
+    </td>
+</tr>
 </table>
 
 @*Css giỏ hàng*@

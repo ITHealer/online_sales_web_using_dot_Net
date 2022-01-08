@@ -1,10 +1,11 @@
-using System;
+﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Linq;
 
 namespace BHMTOnline.Models
 {
+    // DbContext quản lý các thực thể trong bộ nhớ để biết nó có được đồng bộ với dòng tương ứng trong CSDL hay k
     public partial class BHMTModel : DbContext
     {
         public BHMTModel()
@@ -23,14 +24,15 @@ namespace BHMTOnline.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            // Entity<Name> là một delegate
             modelBuilder.Entity<DonDatHang>()
-                .HasMany(e => e.ChiTietDonHangs)
+                .HasMany(e => e.ChiTietDonHangs) // Cấu hình quan hệ 1-nhiều or nhiều-nhiều
                 .WithRequired(e => e.DonDatHang)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<HangSanXuat>()
                 .Property(e => e.TenHSX)
-                .IsUnicode(false);
+                .IsUnicode(false); // Cấu hình thuộc tính chuỗi có thể chứa các ký tự Unicode hay k
 
             modelBuilder.Entity<HangSanXuat>()
                 .HasMany(e => e.SanPhams)

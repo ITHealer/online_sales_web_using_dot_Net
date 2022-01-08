@@ -26,6 +26,29 @@ namespace BHMTOnline.Controllers
             return View(db.HangSanXuats.ToList());
         }
 
+        // Phân loại sản phẩm theo hãng sản xuất
+        public ActionResult Category(int? idMaHSX)
+        {
+            var category = db.SanPhams.Where(n => n.HangSanXuat.MaHSX == idMaHSX).ToList();
+            if (category == null)
+            {
+                return HttpNotFound();
+            }
+            return PartialView(category);
+        }
+
+        //Chi tiết khi chọn sp theo danh mục
+        public ActionResult chitiet(int MaSP = 0)
+        {
+            var chitiet = db.SanPhams.SingleOrDefault(n => n.MaSP == MaSP);
+            if (chitiet == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            return View(chitiet);
+        }
+
         // GET: DanhMuc/Details/5
         public ActionResult Details(int? id)
         {

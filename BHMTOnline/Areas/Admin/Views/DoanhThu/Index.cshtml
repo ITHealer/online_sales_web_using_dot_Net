@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BHMTOnline.Models.ChiTietDonHang>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Doanh thu</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Tổng doanh thu
+        </th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>
+            <div style="color:red">@ViewBag.dt đồng</div>
+        </td>
+
+    </tr>
+</table>

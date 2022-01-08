@@ -39,11 +39,6 @@ namespace BHMTOnline.Areas.Admin.Controllers
             return View(sp.ToPagedList(pageNumber, pageSize));
 
         }
-        //public ActionResult Index()
-        //{
-        //    var sanPhams = db.SanPhams.Include(s => s.HangSanXuat).Include(s => s.HeDieuHanh);
-        //    return View(sanPhams.ToList());
-        //}
 
         // GET: Admin/Home/Details/5
         public ActionResult Details(int? id)

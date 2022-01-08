@@ -15,16 +15,15 @@
         }
         .bg-local .success {
             margin: 0 0 10px 20px;
-            text-decoration: none;
             width: 80px;
             height: auto;
             border: none;
             padding: 5px;
             border-radius: 5px;
             font-size: 16px;
+            color: #000;
         }
-        .bg-local .success a {
-            text-decoration: none;
+        .bg-local .success input {
             color: #000;
         }
             .bg-local .success:hover {
@@ -41,9 +40,13 @@
 
         @foreach (var item in Model)
         {
-            <div class="col-lg-1">
-                <button class="success"><a href="#"> @item.TenHSX</a></button>
-            </div>
+        <div class="col-lg-1">
+            @using (Html.BeginForm("Category", "DanhMuc", new { @idMaHSX = item.MaHSX }))
+            {
+                <input class="success" type="submit" value=@item.TenHSX id="bgnGioHang" />
+            }
+
+        </div>
         }
     </div>
 </div>

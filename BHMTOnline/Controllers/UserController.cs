@@ -22,15 +22,18 @@ namespace BHMTOnline.Controllers
         {
             try
             {
-                if(nguoiDung.Email != "Admin@gmail.com")
+                if(nguoiDung.Email != "Admin@gmail.com" && nguoiDung.Email != "nhanvien@gmail.com")
                 {
                     nguoiDung.IDQuyen = 2;
                 }
-                else
+                else if(nguoiDung.Email == "nhanvien@gmail.com")
+                {
+                    nguoiDung.IDQuyen = 3;
+                }
+                else if (nguoiDung.Email == "Admin@gmail.com")
                 {
                     nguoiDung.IDQuyen = 1;
-                } 
-                    
+                }
                 // Thêm người dùng  mới
                 user.NguoiDungs.Add(nguoiDung);
                 // Lưu lại vào cơ sở dữ liệu
@@ -41,6 +44,7 @@ namespace BHMTOnline.Controllers
                     // Nếu dữ liệu đúng thì gọi đến trang đăng nhập
                     return RedirectToAction("DangNhap"); 
                 }
+                // Nếu sai thì vẫn ở lại trang đăng ký
                 return View("DangKy");
             }
             catch
@@ -58,17 +62,27 @@ namespace BHMTOnline.Controllers
         [HttpPost]
         public ActionResult DangNhap(FormCollection userLogin)
         {
+            // Lấy dữ liệu nhập vào từ form
             string userEmail = userLogin["userEmail"].ToString();
             string passWord = userLogin["passWord"].ToString();
+
+            // Check xem có người dùng đó dưới db không? SingleOrDefault là lấy dòng kết quả đầu tiên
             var isLogin = user.NguoiDungs.SingleOrDefault(x => x.Email.Equals(userEmail) && x.MatKhau.Equals(passWord));
 
             if (isLogin != null)
             {
+                // Nếu email là Admin@gmail.com thì chuyển đến trang Admin/Home, actionName là Index
+                // Lưu session để truyền đi
                 if (userEmail == "Admin@gmail.com")
                 {
                     Session["use"] = isLogin;
                     return RedirectToAction("Index", "Admin/Home");
                 }
+                else if(userEmail == "nhanvien@gmail.com")
+                {
+                    Session["use"] = isLogin;
+                    return RedirectToAction("Index", "Staff/Home");
+                }    
                 else
                 {
                     Session["use"] = isLogin;
@@ -80,13 +94,11 @@ namespace BHMTOnline.Controllers
                 ViewBag.Fail = "Đăng nhập thất bại";
                 return View("DangNhap");
             }
-
         }
         public ActionResult DangXuat()
         {
             Session["use"] = null;
             return RedirectToAction("Index", "Home");
-
         }
 
     }

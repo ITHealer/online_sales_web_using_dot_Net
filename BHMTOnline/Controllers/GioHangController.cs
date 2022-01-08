@@ -10,30 +10,34 @@ namespace BHMTOnline.Controllers
     {
         private BHMTModel db = new BHMTModel();
         // GET: GioHang
-        //Lấy giỏ hàng 
+        // Lấy giỏ hàng 
         public List<GioHang> LayGioHang()
         {
+            // Ép Session["GioHang"] thành một list.
             List<GioHang> lstGioHang = Session["GioHang"] as List<GioHang>;
             if (lstGioHang == null)
             {
-                //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tao list giỏ hàng (sessionGioHang)
+                //Nếu giỏ hàng chưa tồn tại thì mình tiến hành khởi tạo list giỏ hàng (Session["GioHang"])
                 lstGioHang = new List<GioHang>();
                 Session["GioHang"] = lstGioHang;
             }
             return lstGioHang;
         }
-        //Thêm vào giỏ hàng
+
+        //Thêm vào giỏ hàng, truyền vào id sản phẩm
         public ActionResult ThemGioHang(int iMasp, string strURL)
         {
+            // Truy xuất sản phẩm có iMasp trong bảng sản phẩm.
             SanPham sp = db.SanPhams.SingleOrDefault(n => n.MaSP == iMasp);
             if (sp == null)
             {
                 Response.StatusCode = 404;
                 return null;
             }
-            //Lấy ra session giỏ hàng; từ phương thức lấy giỏ hàng ở trên;
+            // Lấy ra session giỏ hàng, từ phương thức lấy giỏ hàng ở trên
             List<GioHang> lstGioHang = LayGioHang();
-            //Kiểm tra sp này đã tồn tại trong session[giohang] chưa; GioHang từ phương thức trong class GioHang.cs
+            // Kiểm tra sp này đã tồn tại trong Session["GioHang"] chưa
+            // GioHang là phương thức trong class GioHang.cs ở Models
             GioHang sanpham = lstGioHang.Find(n => n.iMasp == iMasp);
             if (sanpham == null)
             {
@@ -48,10 +52,11 @@ namespace BHMTOnline.Controllers
                 return Redirect(strURL);
             }
         }
+
         //Cập nhật giỏ hàng 
         public ActionResult CapNhatGioHang(int iMaSP, FormCollection f)
         {
-            //Kiểm tra masp
+            //Kiểm tra masp, chỉnh sửa giỏ hàng cập nhật số lượng
             SanPham sp = db.SanPhams.SingleOrDefault(n => n.MaSP == iMaSP);
             //Nếu get sai masp thì sẽ trả về trang lỗi 404
             if (sp == null)
@@ -67,7 +72,6 @@ namespace BHMTOnline.Controllers
             if (sanpham != null)
             {
                 sanpham.iSoLuong = int.Parse(f["txtSoLuong"].ToString());
-
             }
             return RedirectToAction("GioHang");
         }
@@ -85,12 +89,13 @@ namespace BHMTOnline.Controllers
             //Lấy giỏ hàng ra từ session
             List<GioHang> lstGioHang = LayGioHang();
             GioHang sanpham = lstGioHang.SingleOrDefault(n => n.iMasp == iMaSP);
-            //Nếu mà tồn tại thì chúng ta cho sửa số lượng
+            // Nếu sản phẩm có trong list thì xóa sản phẩm đó đi
             if (sanpham != null)
             {
                 lstGioHang.RemoveAll(n => n.iMasp == iMaSP);
 
             }
+            // Nếu giỏ hàng không còn sản phẩm nào thì chuyển về trang chủ
             if (lstGioHang.Count == 0)
             {
                 return RedirectToAction("Index", "Home");
@@ -105,10 +110,11 @@ namespace BHMTOnline.Controllers
                 return RedirectToAction("Index", "Home");
             }
             List<GioHang> lstGioHang = LayGioHang();
+            ViewBag.TongTien = TongTien();
             return View(lstGioHang);
         }
         //Tính tổng số lượng và tổng tiền
-        //Tính tổng số lượng
+        //Tính tổng số lượng, hiện thị ở chỗ giỏ hàng đã thêm tổng số bn sp.
         private int TongSoLuong()
         {
             int iTongSoLuong = 0;
@@ -130,7 +136,7 @@ namespace BHMTOnline.Controllers
             }
             return dTongTien;
         }
-        //tạo partial giỏ hàng
+        // Tạo GioHangPartial
         public ActionResult GioHangPartial()
         {
             if (TongSoLuong() == 0)
@@ -138,7 +144,7 @@ namespace BHMTOnline.Controllers
                 return PartialView();
             }
             ViewBag.TongSoLuong = TongSoLuong();
-            ViewBag.TongTien = TongTien();
+            //ViewBag.TongTien = TongTien();
             return PartialView();
         }
         //Xây dựng 1 view cho người dùng chỉnh sửa giỏ hàng
@@ -153,17 +159,24 @@ namespace BHMTOnline.Controllers
 
         }
 
-        #region // Mới hoàn thiện
+        private void CapNhatSoLuong(int iMaSP, int sl)
+        {
+            SanPham sp = db.SanPhams.SingleOrDefault(n => n.MaSP == iMaSP);
+            sp.SoLuong -= sl;
+            db.SaveChanges();
+        }
+
+        #region
         //Xây dựng chức năng đặt hàng
         [HttpPost]
         public ActionResult DatHang()
         {
-            //Kiểm tra đăng đăng nhập
+            // Kiểm tra đã đăng nhập hay chưa
             if (Session["use"] == null || Session["use"].ToString() == "")
             {
                 return RedirectToAction("DangNhap", "User");
             }
-            //Kiểm tra giỏ hàng
+            // Kiểm tra giỏ hàng
             if (Session["GioHang"] == null)
             {
                 RedirectToAction("Index", "Home");
@@ -174,25 +187,32 @@ namespace BHMTOnline.Controllers
             List<GioHang> gh = LayGioHang();
             ddh.MaNguoiDung = kh.MaNguoiDung;
             ddh.NgayDat = DateTime.Now;
+            // 1: đang chờ xác nhận; 0: là đã xác nhận rồi (đã giao)
+            ddh.TinhTrang = 1;
             Console.WriteLine(ddh);
             db.DonDatHangs.Add(ddh);
             db.SaveChanges();
-            //Thêm chi tiết đơn hàng
+            //Thêm chi tiết đơn hàng. Khi cần xem chi tiết đơn hàng
             foreach (var item in gh)
             {
                 ChiTietDonHang ctDH = new ChiTietDonHang();
-                float thanhtien = item.iSoLuong * (float)item.dDonGia;
+                double thanhtien = item.iSoLuong * (double)item.dDonGia;
                 ctDH.MaDDH = ddh.MaDDH;
                 ctDH.MaSP = item.iMasp;
                 ctDH.SoLuong = item.iSoLuong;
-                ctDH.DonGia = (float)item.dDonGia;
-                ctDH.ThanhTien = (float)thanhtien;
+                // Cập nhật lại số lượng sản phẩm còn trong kho
+                CapNhatSoLuong(item.iMasp, item.iSoLuong);
+
+                ctDH.DonGia = (double)item.dDonGia;
+                ctDH.ThanhTien = (double)thanhtien;
                 db.ChiTietDonHangs.Add(ctDH);
             }
             db.SaveChanges();
+            // Clear giỏ hàng sau khi đã đặt hàng; HttpContext có tác dụng trong 1 request
+            HttpContext.Session.Remove("GioHang");
+            // Gọi đến action Index của controller DonHangs.
             return RedirectToAction("Index", "DonHangs");
         }
         #endregion
-
     }
 }

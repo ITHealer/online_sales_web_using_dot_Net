@@ -26,8 +26,6 @@ namespace BHMTOnline.Models
 
         public bool? DaThanhToan { get; set; }
 
-        public double? ThanhTien { get; set; }
-
         public int MaNguoiDung { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

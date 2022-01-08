@@ -5,20 +5,19 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Sửa phân quyền</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Quyen</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.IDQuyen)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.TenQuyen, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.TenQuyen, "Tên quyền", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.TenQuyen, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.TenQuyen, "", new { @class = "text-danger" })

@@ -1,0 +1,80 @@
+﻿@model IEnumerable<BHMTOnline.Models.DonDatHang>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh sách</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<p>
+    @using (Html.BeginForm("Index", "DonDatHangs", FormMethod.Post))
+    {
+    <p>
+        Tình trạng: @Html.TextBox("SearchString") <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+    <p />
+    <table class="table">
+        <tr>
+            <th>
+                Mã đơn hàng
+            </th>
+            <th>
+                Họ tên
+            </th>
+            <th>
+                Ngày đặt
+            </th>
+            <th>
+                Ngày giao
+            </th>
+            <th>
+                Tình trạng
+            </th>
+            <th>
+                Thanh toán
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MaDDH)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NguoiDung.HoTen)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayDat)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NgayGiao)
+        </td>
+        <td>
+            @if (item.TinhTrang == 1)
+            {
+                <div style="color:red">Đang chờ xác nhận</div>
+            }
+            else
+            {
+                <div style="color:red">Đã giao</div>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DaThanhToan)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MaDDH }) |
+            @Html.ActionLink("Details", "ChiTiet", new { id = item.MaDDH }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MaDDH }) |
+        </td>
+    </tr>
+        }
+
+    </table>

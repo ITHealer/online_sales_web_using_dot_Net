@@ -6,7 +6,7 @@
     <div class="bg-title-product"><h3> Các sản phẩm </h3></div>
     @foreach (var item in Model)
     {
-        <div class="col-md-3 col-sm-6">
+        <div style="margin: 10px 0;" class="col-md-3 col-sm-6">
             <a href="@Url.Action("chitiet", new {@MaSP=item.MaSP })">
                 <img src=@Url.Content("~/HinhanhSP/"+item.HinhAnh) class="img-responsive" alt="" width="400" height="400" />
             </a>
@@ -15,9 +15,9 @@
                 <h3 style="color:red">Giá: @item.DonGiaBan</h3>
                 <br />
                 @using (Html.BeginForm("ThemGioHang", "GioHang", new { @iMaSP = item.MaSP, @strURL = Request.Url.ToString() }))
-                {
-                    <input type="submit" value="Mua hàng" id="bgnGioHang" />}
-                @*<h4> <a href="@Url.Action("xemchitiet", new {@Masp=item.Masp })">Xem chi tiết</a></h4>*@
+                 {
+                    <input type="submit" value="Mua hàng" id="bgnGioHang" />
+                 }
             </center>
 
         </div>

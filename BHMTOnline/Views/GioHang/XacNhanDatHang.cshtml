@@ -1,0 +1,53 @@
+﻿@model IEnumerable<BHMTOnline.Models.DonDatHang>
+
+@{ ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml"; }
+
+<h2>Danh sách đơn hàng</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            Họ tên
+        </th>
+        <th>
+            Số điện thoại
+        </th>
+        <th>
+            Email
+        </th>
+        <th>
+            Địa chỉ
+        </th>
+        <th>
+            Ngày đặt
+        </th>
+        <th>
+            Ngày giao
+        </th>
+        <th>
+            Tình trạng đơn hàng
+        </th>
+        <th></th>
+    </tr>
+
+    <tr>
+        <td>
+            @ViewBag.hoTen
+        </td>
+        <td>
+            @ViewBag.sdt
+        </td>
+        <td>
+            @ViewBag.email
+        </td>
+        <td>
+            @ViewBag.diachi
+        </td>
+        <td>
+            @ViewBag.email
+        </td>
+    </tr>
+
+</table>

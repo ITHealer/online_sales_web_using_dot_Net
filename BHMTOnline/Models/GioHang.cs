@@ -17,7 +17,7 @@ namespace BHMTOnline.Models
         {
             get { return iSoLuong * dDonGia; }
         }
-        //Hàm tạo cho giỏ hàng
+        //Hàm tạo cho giỏ hàng, hiển thị trên view khi chọn vào giỏ hàng. Show các trường thông tin theo ý muốn
         public GioHang(int Masp)
         {
             iMasp = Masp;
@@ -26,6 +26,7 @@ namespace BHMTOnline.Models
             sTensp = sp.TenSP;
             sHinhAnh = sp.HinhAnh;
             dDonGia = double.Parse(sp.DonGiaBan.ToString());
+            //Mỗi lần thêm vào giỏ chỉ thêm 1 sp.
             iSoLuong = 1;
         }
 

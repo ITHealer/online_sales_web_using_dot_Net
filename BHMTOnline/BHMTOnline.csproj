@@ -249,12 +249,18 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ChiTietDonHangsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DoanhThuController.cs" />
+    <Compile Include="Areas\Admin\Controllers\DonDatHangsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HangSanXuatsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HeDieuHanhsController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\NguoiDungsController.cs" />
     <Compile Include="Areas\Admin\Controllers\QuyensController.cs" />
     <Compile Include="Areas\Admin\Controllers\SignOutController.cs" />
+    <Compile Include="Areas\Staff\Controllers\ChiTietDonHangsController.cs" />
+    <Compile Include="Areas\Staff\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\DanhMucController.cs" />
     <Compile Include="Controllers\DonHangsController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
@@ -343,6 +349,25 @@
     <Content Include="Areas\Admin\Views\Quyens\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Quyens\Index.cshtml" />
     <Content Include="Areas\Admin\Views\SignOut\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDonHangs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDonHangs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDonHangs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDonHangs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\ChiTietDonHangs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\web.config" />
+    <Content Include="Areas\Staff\Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\Details.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\Edit.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\ChiTietDonHangs\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DoanhThu\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\DonDatHangs\ChiTiet.cshtml" />
+    <Content Include="Areas\Staff\Views\Home\ChiTiet.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -368,8 +393,6 @@
     <Content Include="Views\User\DangKy.cshtml" />
     <Content Include="Views\User\DangNhap.cshtml" />
     <Content Include="Views\Danhmuc\DanhMucPartial.cshtml" />
-    <Content Include="Views\SanPham\dellPartial.cshtml" />
-    <Content Include="Views\SanPham\asusPartial.cshtml" />
     <Content Include="Views\SanPham\chitiet.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
@@ -384,11 +407,17 @@
     <Content Include="Views\GioHang\GioHangPartial.cshtml" />
     <Content Include="Views\GioHang\GioHang.cshtml" />
     <Content Include="Views\GioHang\SuaGioHang.cshtml" />
+    <Content Include="Views\DonHangs\Index.cshtml" />
+    <Content Include="Views\DonHangs\Details.cshtml" />
+    <Content Include="Views\Danhmuc\Category.cshtml" />
+    <Content Include="Views\Danhmuc\chitiet.cshtml" />
+    <Content Include="Views\GioHang\XacNhanDatHang.cshtml" />
+    <Content Include="Views\DonHangs\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Views\DonHang\" />
+    <Folder Include="Areas\Staff\Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

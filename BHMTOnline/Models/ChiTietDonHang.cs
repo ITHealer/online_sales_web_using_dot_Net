@@ -22,7 +22,7 @@ namespace BHMTOnline.Models
         public int SoLuong { get; set; }
 
         public double DonGia { get; set; }
-        public double? ThanhTien { get; set; }
+        public double ThanhTien { get; set; }
         public virtual DonDatHang DonDatHang { get; set; }
 
         public virtual SanPham SanPham { get; set; }

@@ -15,17 +15,6 @@ namespace BHMTOnline.Controllers
     {
         private BHMTModel db = new BHMTModel();
 
-        public ActionResult dellpartial()
-        {
-            var dell = db.SanPhams.Where(n => n.HangSanXuat.TenHSX == "Dell").ToList();
-            return PartialView(dell);
-        }
-        public ActionResult asuspartial()
-        {
-            var asus = db.SanPhams.Where(n => n.HangSanXuat.TenHSX == "Asus").ToList();
-            return PartialView(asus);
-        }
-
         public ActionResult DanhSachSanPhamPartial()
         {
             var ds = db.SanPhams.ToList();
