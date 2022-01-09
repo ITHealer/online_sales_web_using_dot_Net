@@ -465,3 +465,17 @@ D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\obj\Debug\BHMTOnline.csproj.CopyComplete
 D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\obj\Debug\BHMTOnline.dll
 D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\obj\Debug\BHMTOnline.pdb
 D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\obj\Debug\BHMTOnline.csproj.AssemblyReference.cache
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.Office.Client.Policy.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.Office.Client.TranslationServices.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.Office.SharePoint.Tools.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.Online.SharePoint.Client.Tenant.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.ProjectServer.Client.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.DocumentManagement.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.Publishing.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.Runtime.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.Search.Applications.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.Search.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.Taxonomy.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.UserProfiles.dll
+D:\SQL\BHMTOnline\BHMTOnline\BHMTOnline\bin\Microsoft.SharePoint.Client.WorkflowServices.dll

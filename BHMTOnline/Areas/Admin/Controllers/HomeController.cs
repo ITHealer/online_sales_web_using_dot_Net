@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using BHMTOnline.Models;
+using Microsoft.SharePoint.Client;
 using PagedList;
 
 namespace BHMTOnline.Areas.Admin.Controllers
@@ -16,19 +18,25 @@ namespace BHMTOnline.Areas.Admin.Controllers
         private BHMTModel db = new BHMTModel();
 
         // GET: Admin/Home
-        public ActionResult Index(int? page)
+        public ActionResult Index(int? page, string SearchString)
         {
-            // 1. Tham số int? dùng để thể hiện null và kiểu int( số nguyên)
-            // page có thể có giá trị là null ( rỗng) và kiểu int.
-
-            // 2. Nếu page = null thì đặt lại là 1.
+            var sp = new List<SanPham>();
+            if (SearchString != null)
+            {
+                page = 1;
+            }
+            
+            if (!string.IsNullOrEmpty(SearchString))
+            {
+                sp = db.SanPhams.Where(n => n.TenSP.Contains(SearchString)).ToList();
+            }
+            else
+            {
+                sp = db.SanPhams.OrderBy(x => x.MaSP).ToList();
+            }
+           
             if (page == null) page = 1;
-
-            // 3. Tạo truy vấn sql, lưu ý phải sắp xếp theo trường nào đó, ví dụ OrderBy
-            // theo Masp mới có thể phân trang.
-            var sp = db.SanPhams.OrderBy(x => x.MaSP);
-
-            // 4. Tạo kích thước trang (pageSize) hay là số sản phẩm hiển thị trên 1 trang
+            
             int pageSize = 5;
 
             // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
@@ -68,7 +76,7 @@ namespace BHMTOnline.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham)
+        public ActionResult Create([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham, HttpPostedFileBase img)
         {
             if (ModelState.IsValid)
             {

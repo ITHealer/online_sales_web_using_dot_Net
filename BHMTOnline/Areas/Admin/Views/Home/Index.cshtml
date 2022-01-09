@@ -13,19 +13,23 @@
         border: 0px;
         border-radius: 4px;
     }
+
         .btn-default:hover {
             background: #0c80fb;
         }
+
         .btn-default a {
             color: #000;
         }
-        .btn-default a:hover {
-            color: #fff;
-        }
+
+            .btn-default a:hover {
+                color: #fff;
+            }
 
         .btn-default a {
             text-decoration: none;
         }
+
     .crud a {
         text-decoration: none;
         background: lavender;
@@ -38,14 +42,21 @@
             background: #0c80fb;
             color: #fff;
         }
-
 </style>
 
 <h2>Danh sách </h2>
 
 <p>
     <button class="btn-default">@Html.ActionLink("Create", "Create")</button>
-<p/>
+<p />
+<p>
+    @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+    {
+    <p>
+        Tên sản phẩm: @Html.TextBox("SearchString") <input type="submit" value="Tìm kiếm" />
+    </p>
+}
+    <p />
     <table class="table">
         <tr>
             <th>
@@ -98,62 +109,63 @@
 
         @foreach (var item in Model)
         {
-    <tr class="crud">
-        <td>
-            @Html.DisplayFor(modelItem => item.HangSanXuat.TenHSX)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HeDieuHanh.TenHDH)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TenSP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SoLuong)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonGiaNhap)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DonGiaBan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.HinhAnh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ManHinh)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CPU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Ram)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DoHoa)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OCung)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pin)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.XuatXu)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NamRaMat)
-        </td>
-        <td>
-            @Html.ActionLink("Details", "Details", new { id = item.MaSP })
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.MaSP })
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
-        </td>
-    </tr>
+            <tr class="crud">
+                <td>
+                    @Html.DisplayFor(modelItem => item.HangSanXuat.TenHSX)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HeDieuHanh.TenHDH)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TenSP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SoLuong)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGiaNhap)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DonGiaBan)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.HinhAnh)*@
+                    <img src="@Url.Content("~/HinhanhSP/" +item.HinhAnh)" width="50" height="50" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ManHinh)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CPU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ram)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DoHoa)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OCung)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pin)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.XuatXu)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NamRaMat)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.MaSP })
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MaSP })
+                </td>
+                <td>
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
+                </td>
+            </tr>
         }
 
     </table>
