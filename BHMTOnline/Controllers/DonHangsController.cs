@@ -24,6 +24,8 @@ namespace BHMTOnline.Controllers
             }
             NguoiDung kh = (NguoiDung)Session["use"];
             int maND = kh.MaNguoiDung;
+            // Sử dụng Include để tham chiếu đến bảng người dùng để lấy các trường thông tin.
+            // Thay vì dùng 2 câu truy vấn thì có thể gộp thành một.
             var donhangs = db.DonDatHangs.Include(d => d.NguoiDung).Where(d => d.MaNguoiDung == maND);
             return View(donhangs.ToList());
         }

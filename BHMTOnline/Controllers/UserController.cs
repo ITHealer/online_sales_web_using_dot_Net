@@ -34,17 +34,13 @@ namespace BHMTOnline.Controllers
                 {
                     nguoiDung.IDQuyen = 1;
                 }
-                // Thêm người dùng  mới
                 user.NguoiDungs.Add(nguoiDung);
-                // Lưu lại vào cơ sở dữ liệu
                 user.SaveChanges();
-                // Nếu dữ liệu đúng thì trả về trang đăng nhập
                 if (ModelState.IsValid)
                 {
                     // Nếu dữ liệu đúng thì gọi đến trang đăng nhập
                     return RedirectToAction("DangNhap"); 
                 }
-                // Nếu sai thì vẫn ở lại trang đăng ký
                 return View("DangKy");
             }
             catch
@@ -62,7 +58,6 @@ namespace BHMTOnline.Controllers
         [HttpPost]
         public ActionResult DangNhap(FormCollection userLogin)
         {
-            // Lấy dữ liệu nhập vào từ form
             string userEmail = userLogin["userEmail"].ToString();
             string passWord = userLogin["passWord"].ToString();
 

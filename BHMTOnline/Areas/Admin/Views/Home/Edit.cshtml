@@ -7,7 +7,7 @@
 
 <h2>Sửa sản phẩm</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Edit", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
     
@@ -51,7 +51,9 @@
         <div class="form-group">
             <div class="col-md-10">
                 Hình ảnh
-                @Html.EditorFor(model => model.HinhAnh, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.HinhAnh, null, new { type = "file", @class = "form-control" })
+                <img src="~/HinhAnhSP/@Model.HinhAnh" />
+                @Html.Hidden("oldimage", @Model.HinhAnh)
                 @Html.ValidationMessageFor(model => model.HinhAnh, "", new { @class = "text-danger" })
             </div>
         </div>

@@ -25,7 +25,7 @@ namespace BHMTOnline.Areas.Admin.Controllers
             {
                 page = 1;
             }
-            
+
             if (!string.IsNullOrEmpty(SearchString))
             {
                 sp = db.SanPhams.Where(n => n.TenSP.Contains(SearchString)).ToList();
@@ -34,9 +34,9 @@ namespace BHMTOnline.Areas.Admin.Controllers
             {
                 sp = db.SanPhams.OrderBy(x => x.MaSP).ToList();
             }
-           
+
             if (page == null) page = 1;
-            
+
             int pageSize = 5;
 
             // 4.1 Toán tử ?? trong C# mô tả nếu page khác null thì lấy giá trị page, còn
@@ -74,15 +74,46 @@ namespace BHMTOnline.Areas.Admin.Controllers
         // POST: Admin/Home/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult Create([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham, HttpPostedFileBase img)
+        //{
+        //    if (ModelState.IsValid)
+        //    {
+        //        db.SanPhams.Add(sanPham);
+        //        db.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+
+        //    ViewBag.MaHSX = new SelectList(db.HangSanXuats, "MaHSX", "TenHSX", sanPham.MaHSX);
+        //    ViewBag.MaHDH = new SelectList(db.HeDieuHanhs, "MaHDH", "TenHDH", sanPham.MaHDH);
+        //    return View(sanPham);
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham, HttpPostedFileBase img)
+        [ValidateInput(false)]
+        public ActionResult Create([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham, HttpPostedFileBase HinhAnh)
         {
             if (ModelState.IsValid)
             {
-                db.SanPhams.Add(sanPham);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    if (HinhAnh.ContentLength > 0)
+                    {
+                        string _FileName = Path.GetFileName(HinhAnh.FileName);
+                        string _path = Path.Combine(Server.MapPath("~/HinhAnhSP"), _FileName);
+                        HinhAnh.SaveAs(_path);
+                        sanPham.HinhAnh = _FileName;
+                    }
+                    db.SanPhams.Add(sanPham);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ViewBag.Message = "không thành công!!";
+                }
             }
 
             ViewBag.MaHSX = new SelectList(db.HangSanXuats, "MaHSX", "TenHSX", sanPham.MaHSX);
@@ -112,14 +143,36 @@ namespace BHMTOnline.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham)
+        [ValidateInput(false)]
+        public ActionResult Edit([Bind(Include = "MaSP,TenSP,SoLuong,DonGiaNhap,DonGiaBan,HinhAnh,ManHinh,CPU,Ram,DoHoa,OCung,Pin,XuatXu,NamRaMat,MaHSX,MaHDH")] SanPham sanPham, HttpPostedFileBase HinhAnh, System.Web.Mvc.FormCollection form)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(sanPham).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                try
+                {
+                    if (HinhAnh != null)
+                    {
+                        string _FileName = Path.GetFileName(HinhAnh.FileName);
+                        string _path = Path.Combine(Server.MapPath("~/HinhAnhSP"), _FileName);
+                        HinhAnh.SaveAs(_path);
+                        sanPham.HinhAnh = _FileName;
+                        _path = Path.Combine(Server.MapPath("~/HinhAnhSP"), form["oldimage"]);
+                        if (System.IO.File.Exists(_path))
+                            System.IO.File.Delete(_path); // xóa hình cũ
+
+                    }
+                    else
+                        sanPham.HinhAnh = form["oldimage"];
+                    db.Entry(sanPham).State = EntityState.Modified;
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                catch
+                {
+                    ViewBag.Message = "không thành công!!";
+                }
             }
+
             ViewBag.MaHSX = new SelectList(db.HangSanXuats, "MaHSX", "TenHSX", sanPham.MaHSX);
             ViewBag.MaHDH = new SelectList(db.HeDieuHanhs, "MaHDH", "TenHDH", sanPham.MaHDH);
             return View(sanPham);

@@ -12,6 +12,7 @@
         padding: 4px 15px;
         border: 0px;
         border-radius: 4px;
+        background: #15f234;
     }
 
         .btn-default:hover {
@@ -20,6 +21,7 @@
 
         .btn-default a {
             color: #000;
+            
         }
 
             .btn-default a:hover {
@@ -42,6 +44,18 @@
             background: #0c80fb;
             color: #fff;
         }
+    .btn-details a {
+        color: #000;
+        background: #fe8473;
+    }
+    .btn-edit a {
+        color: #000;
+        background: #ffd800;
+    }
+    .btn-del a {
+        color: #000;
+        background: #f00;
+    }
 </style>
 
 <h2>Danh sách </h2>
@@ -104,7 +118,9 @@
             <th>
                 Năm ra mắt
             </th>
-            <th></th>
+            <th>Chi tiết</th>
+            <th>Sửa</th>
+            <th>Xóa</th>
         </tr>
 
         @foreach (var item in Model)
@@ -156,13 +172,13 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.NamRaMat)
                 </td>
-                <td>
+                <td class="btn-details">
                     @Html.ActionLink("Details", "Details", new { id = item.MaSP })
                 </td>
-                <td>
+                <td class="btn-edit">
                     @Html.ActionLink("Edit", "Edit", new { id = item.MaSP })
                 </td>
-                <td>
+                <td class="btn-del">
                     @Html.ActionLink("Delete", "Delete", new { id = item.MaSP })
                 </td>
             </tr>
